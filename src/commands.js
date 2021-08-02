@@ -14,8 +14,9 @@ let man = require("./man"),
 					.map(c => {
 						let cmd = commands[c];
 						let args = cmd.args ? cmd.args.map(arg => `(${arg})`).join(" ") : "";
+						let description = cmd.description || "";
 
-						return `${Bashley.config.prefix}${c} ${args}`;
+						return `${Bashley.config.prefix}${c} ${args} - ${description}`;
 					});
 				let header = "**Bashley created by Tumble#9485**";
 				stdout(
@@ -29,14 +30,16 @@ let man = require("./man"),
 			},
 		},
 		echo: {
+			args: ["text..."],
 			call: async function (message, args, stdin, stdout) {
 				stdout(stdin.join("\n") + args.join(" "));
 				return true;
 			}
 		},
 		man: {
+			args: ["entry", "section"],
 			call: async function (message, args, stdin, stdout) {
-				let m = await man.getMan(args[0]);
+				let m = await man.getMan(args[0], args[1]);
 				stdout(niceEmbed(m));
 				return true;
 			}

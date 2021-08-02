@@ -25,10 +25,24 @@ function parseMan(document) {
 	console.log(parseMan(doc));
 })();*/
 
-async function getMan(entry, section = 1) {
-	let url = getUrl(entry, section),
-		doc = await getDocument(url),
-		man = parseMan(doc);
+async function getMan(entry, section) {
+	let url, doc;
+	if (section) {
+		url = getUrl(entry, section);
+		doc = await getDocument(url);
+	} else {
+		section = 1;
+		while (!doc) {
+			url = getUrl(entry, section);
+			console.log("Trying " + url);
+			try {
+				doc = await getDocument(url);
+			} catch (error) {
+				section++;
+			}
+		}
+	}
+	let man = parseMan(doc);
 	out = { header: man[0] };
 	for (let i = 1; i < man.length - 1; i++) {
 		if (["name", "synopsis", "description"].includes(man[i].toLowerCase()))
