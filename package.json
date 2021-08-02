@@ -1,0 +1,24 @@
+{
+  "name": "bashley",
+  "version": "1.0.0",
+  "description": "## Contributing ### Setup first setup gitflow and then start a new feature branch ```bash ./scripts/gitflow.sh git flow feature start (feature name) ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tumble1999/bashley.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tumble1999/bashley/issues"
+  },
+  "homepage": "https://github.com/tumble1999/bashley#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
