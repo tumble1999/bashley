@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tumble1999/bashley#readme",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "jsdom": "^16.7.0"
   }
 }

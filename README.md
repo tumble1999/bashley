@@ -4,6 +4,8 @@
 Setup your config file
 ```bash
 cp config.base.js config.js
+nvm use
+npm i
 ```
 
 ## Contributing

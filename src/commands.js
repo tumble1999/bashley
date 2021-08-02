@@ -1,48 +1,72 @@
-let commands = {
-	ping: {
-		call: async function (message, args, stdin, stdout) {
-			stdout(`Pong: ${Date.now() - message.createdTimestamp}ms`);
-		},
-	},
-	help: {
-		call: async function (message, args, stdin, stdout) {
-			let list = Object.keys(commands)
-				.filter(cmd => hasPerms(message.member, commands[cmd].perms))
-				.map(c => {
-					let cmd = commands[c];
-					let args = cmd.args ? cmd.args.map(arg => `(${arg})`).join(" ") : "";
+let man = require("./man"),
+	Discord = require("discord.js"),
 
-					return `${Bashley.config.prefix}${c} ${args}`;
-				});
-			let header = "**Bashley created by Tumble#9485**";
-			stdout(
-				header +
-				"\n```" +
-				(list.length == 0
-					? "There are no commands available to you."
-					: list.join("\n")) +
-				"```"
-			);
+	commands = {
+		ping: {
+			call: async function (message, args, stdin, stdout) {
+				stdout(`Pong: ${Date.now() - message.createdTimestamp}ms`);
+			},
 		},
-	},
-	echo: {
-		call: async function (message, args, stdin, stdout) {
-			stdout(stdin.join("\n") + args.join(" "));
-			return true;
+		help: {
+			call: async function (message, args, stdin, stdout) {
+				let list = Object.keys(commands)
+					.filter(cmd => hasPerms(message.member, commands[cmd].perms))
+					.map(c => {
+						let cmd = commands[c];
+						let args = cmd.args ? cmd.args.map(arg => `(${arg})`).join(" ") : "";
+
+						return `${Bashley.config.prefix}${c} ${args}`;
+					});
+				let header = "**Bashley created by Tumble#9485**";
+				stdout(
+					header +
+					"\n```" +
+					(list.length == 0
+						? "There are no commands available to you."
+						: list.join("\n")) +
+					"```"
+				);
+			},
+		},
+		echo: {
+			call: async function (message, args, stdin, stdout) {
+				stdout(stdin.join("\n") + args.join(" "));
+				return true;
+			}
+		},
+		man: {
+			call: async function (message, args, stdin, stdout) {
+				let m = await man.getMan(args[0]);
+				stdout(niceEmbed(m));
+				return true;
+			}
 		}
-	},
-	true: {
-		call: function () {
-			return true;
-		}
-	},
-	false: {
-		call: function () {
-			return false;
+	};
+
+function niceEmbed(obj) {
+	let embed = new Discord.MessageEmbed();
+	embed.foo
+
+	for (let key in obj) {
+		let value = obj[key];
+		if (value.length > 1024) continue;
+		switch (key) {
+			case "title":
+			case "header":
+				embed.setTitle(value);
+				break;
+			case "footer":
+				embed.setFooter(value);
+				break;
+			case "url":
+				embed.setURL(value);
+				break;
+			default:
+				embed.addField(key, value);
 		}
 	}
-};
-
+	return embed;
+}
 
 function hasPerms(member, perms) {
 	console.log(perms);
