@@ -1,8 +1,13 @@
 # Bashley
 
-## Contributing
 ### Setup
-first setup gitflow and then start a new feature branch
+Setup your config file
+```bash
+cp config.base.js config.js
+```
+
+## Contributing
+If you would like to contribute setup GitFlow and then start a new feature branch
 ```bash
 ./scripts/gitflow.sh
 git flow feature start (feature name)
