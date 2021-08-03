@@ -1,6 +1,6 @@
 {
 	"name": "bashley",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "## Contributing ### Setup first setup gitflow and then start a new feature branch ```bash ./scripts/gitflow.sh git flow feature start (feature name) ```",
 	"main": "index.js",
 	"scripts": {
@@ -23,7 +23,6 @@
 		"jsdom": "^16.7.0"
 	},
 	"engines": {
-		"node": "v12.0.0",
-		"yarn": "v1.22.10"
+		"node": ">=12.0.0"
 	}
 }
