@@ -38,8 +38,14 @@ async function getMan(entry, section) {
 			try {
 				doc = await getDocument(url);
 			} catch (error) {
+				if (section == 9) break;
 				section++;
 			}
+		}
+	}
+	if (!doc) {
+		return {
+			header: "No manual entry for " + entry
 		}
 	}
 	let man = parseMan(doc);
