@@ -1,6 +1,6 @@
 {
 	"name": "bashley",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "## Contributing ### Setup first setup gitflow and then start a new feature branch ```bash ./scripts/gitflow.sh git flow feature start (feature name) ```",
 	"main": "index.js",
 	"scripts": {
