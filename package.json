@@ -1,7 +1,7 @@
 {
 	"name": "bashley",
 	"version": "0.2.2",
-	"description": "## Contributing ### Setup first setup gitflow and then start a new feature branch ```bash ./scripts/gitflow.sh git flow feature start (feature name) ```",
+	"description": "discord bash tools",
 	"main": "index.js",
 	"scripts": {
 		"start":"node index.js"

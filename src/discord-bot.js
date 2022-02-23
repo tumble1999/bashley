@@ -26,7 +26,7 @@ client.on("ready", () => {
 	if (!client.user) return;
 	console.log(`[discord] Logged in as ${client.user.tag}`);
 	client.user.setPresence({
-		activity: { name: "Debian", type: "COMPETING" },
+		activity: { name: "Debian", type: "PLAYING" },
 	});
 });
 
