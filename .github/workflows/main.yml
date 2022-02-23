@@ -10,9 +10,9 @@ jobs:
   deploy:
         name: Deploy to Caprover
         runs-on: ubuntu-latest
-
         env:
-            CAPROVER_SERVER: ${{ secrets.CAPROVER_SERVER }}
+            CAPROVER_APP: bashley
+            CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
             CAPROVER_TOKEN_BASHLEY: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
         steps:
             - name: Checkout
@@ -21,7 +21,7 @@ jobs:
               run: npm install -g caprover
             - name: 'Deploy'
               env:
-                  APP_NAME: bashley
-                  APP_SERVER: ${{ env.CAPROVER_SERVER }}
+                  CAPROVER_URL: ${{ env.CAPROVER_URL}}
+                  CAPROVER_APP:  ${{ env.CAPROVER_APP }}
                   CAPROVER_APP_TOKEN: ${{ env.CAPROVER_TOKEN_BASHLEY }}
-              run: 'caprover deploy --caproverUrl=$APP_SERVER --appName=$APP_NAME'
+              run: 'caprover deploy'
