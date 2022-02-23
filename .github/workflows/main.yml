@@ -27,5 +27,5 @@ jobs:
                   CAPROVER_PASSWORD: ${{ env.CAPROVER_PASSWORD }}
                   CAPROVER_APP: ${{ env.CAPROVER_APP }}
 #                   CAPROVER_APP_TOKEN: ${{ env.CAPROVER_TOKEN_BASHLEY }}
-                  CAPROVER_IMAGE_NAME: img-captain-${{ env.CAPROVER_APP }}
+#                   CAPROVER_IMAGE_NAME: img-captain-${{ env.CAPROVER_APP }}
               run: 'caprover deploy'
