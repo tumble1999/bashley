@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  deploy:
+        name: Deploy to Caprover
+        runs-on: ubuntu-latest
+
+        env:
+            CAPROVER_SERVER: ${{ secrets.CAPROVER_SERVER }}
+            CAPROVER_TOKEN_BASHLEY: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
+
+        strategy:
+            matrix:
+                include:
+                    - app: bashley
+                      token: CAPROVER_TOKEN_BASHLEY
+        steps:
+            - name: 'Install caprover-cli'
+              run: npm install -g caprover
+            - name: 'Deploy ${{ matrix.app }}'
+              env:
+                  APP_NAME: ${{ matrix.app }}
+                  APP_SERVER: ${{ env.CAPROVER_SERVER }}
+                  CAPROVER_APP_TOKEN: ${{ env[matrix.token] }}
+              run: 'caprover deploy --caproverUrl=$APP_SERVER --appName=$APP_NAME'
