@@ -23,6 +23,5 @@ jobs:
                   CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
                   CAPROVER_APP: bashley
                   CAPROVER_BRANCH: master
-                  #CAPROVER_APP_TOKEN: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
-                  CAPROVER_PASSWORD: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
-              run: 'caprover deploy --caproverPassword $CAPROVER_PASSWORD --caproverUrl $CAPROVER_URL --appName $CAPROVER_APP --branch $CAPROVER_BRANCH'
+                  CAPROVER_APP_TOKEN: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
+              run: 'caprover deploy --appToken $CAPROVER_APP_TOKEN --caproverUrl $CAPROVER_URL --appName $CAPROVER_APP --branch $CAPROVER_BRANCH'
