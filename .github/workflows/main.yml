@@ -11,11 +11,6 @@ jobs:
   deploy:
         name: Deploy to Caprover
         runs-on: ubuntu-latest
-        env:
-            CAPROVER_APP: bashley
-            CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
-            CAPROVER_PASSWORD: ${{ secrets.CAPROVER_PASSWORD }}
-            CAPROVER_TOKEN_BASHLEY: ${{ secrets.CAPROVER_TOKEN_BASHLEY }}
         steps:
             - name: Checkout
               uses: actions/checkout@v2
@@ -23,9 +18,8 @@ jobs:
               run: npm install -g caprover
             - name: 'Deploy'
               env:
-                  CAPROVER_URL: ${{ env.CAPROVER_URL }}
-                  CAPROVER_APP: ${{ env.CAPROVER_APP }}
+                  CAPROVER_URL: ${{ secrets.CAPROVER_URL }}
+                  CAPROVER_APP: bashley
                   CAPROVER_BRANCH: master                  
-                  CAPROVER_APP_TOKEN: ${{ env.CAPROVER_TOKEN_BASHLEY }}
-#                   CAPROVER_IMAGE_NAME: img-captain-${{ env.CAPROVER_APP }}
+                  CAPROVER_APP_TOKEN: ${{ secrets.CAPROVER_TOKEN_BASHLEY 
               run: 'caprover deploy'
